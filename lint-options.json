@@ -1,0 +1,27 @@
+{
+  "node": true,
+  "curly": true,
+  "eqeqeq": true,
+  "immed": true,
+  "latedef": true,
+  "newcap": true,
+  "noarg": true,
+  "nonew": true,
+  "undef": true,
+  "evil": true,
+  "trailing": true,
+  "boss": true,
+  "eqnull": true,
+  "globals": {
+    "FileReader": true,
+    "beforeEach": true,
+    "describe": true,
+    "afterEach": true,
+    "it": true,
+    "chrome": true,
+    "alert": true,
+    "window": true,
+    "document": true,
+    "_postMessage": true
+  }
+}
