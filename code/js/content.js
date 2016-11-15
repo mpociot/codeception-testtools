@@ -80,7 +80,7 @@ var App = new Vue({
           }
         });
 
-        $('input[type="submit"],button').on('click', function(){
+        $('input[type="submit"],button,a').on('click', function(){
             if (self.recording === true) {
               var name    = $(this).attr("name") || $(this).text().trim();
               if (name === '') {

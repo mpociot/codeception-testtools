@@ -7,64 +7,25 @@ var helper = require('./modules/helper'),
     
 hljs.registerLanguage('php', require('./libs/languages/php'));
 
-var indent = "    ";
+var indent = "";
 var fakerText="";
 fakerText += indent + "\/**" + "\n";
 fakerText += indent + " * @var Faker\Generator" + "\n";
 fakerText += indent + " *\/" + "\n";
-fakerText += indent + "protected $faker;" + "\n";
-fakerText += indent + "" + "\n";
-fakerText += indent + "\/**" + "\n";
-fakerText += indent + " * Setup faker" + "\n";
-fakerText += indent + " *\/" + "\n";
-fakerText += indent + "public function __construct()" + "\n";
-fakerText += indent + "{" + "\n";
-fakerText += indent + "    $this->faker = \\Faker\\Factory::create();" + "\n";
-fakerText += indent + "}";
+fakerText += indent + "$faker = \\Faker\\Factory::create();" + "\n";
 
 var App = new Vue({
     el: "body",
 
     data: {
-        renaming: false,
         linebreak: "\n",
-        indent: "        ",
+        indent: "",
         steps: [],
         message: '',
-        namespace: '',
-        className: 'ExampleTest',
-        testName: helper.ucfirst(faker.company.catchPhraseNoun().replace('-','').replace(' ','')) + 'Is' + helper.ucfirst(faker.commerce.productAdjective().replace('-','')),
         recording: false,
-
-        withoutMiddleware: false,
-        dbMigrations: false,
-        dbTransactions: false
     },
 
     watch: {
-      'namespace': function() {
-        this.updateCode();
-      },
-
-      'className': function() {
-        this.updateCode();
-      },
-
-      'testName': function() {
-        this.updateCode();
-      },
-
-      'withoutMiddleware': function() {
-        this.updateCode();
-      },
-
-      'dbMigrations': function() {
-        this.updateCode();
-      },
-
-      'dbTransactions': function() {
-        this.updateCode();
-      },
 
       'steps': function(val, oldVal) {
         this.updateCode();
@@ -121,10 +82,6 @@ var App = new Vue({
           });
       },
 
-      rename: function() {
-        this.renaming = ! this.renaming;
-      },
-
       copyTest: function() {
         var self = this;
         var range = document.createRange();
@@ -147,9 +104,6 @@ var App = new Vue({
         $('#testcode').html(hljs.highlightAuto(
           $('#steps')
             .text()
-            .replace('%TESTNAME%', self.testName)
-            .replace('%CLASSNAME%', self.className)
-            .replace('%NAMESPACE%', (self.namespace !== '') ? 'namespace ' + self.namespace + ';' + "\n" : '' )
             .replace('%FAKER%', this.hasFaker ? fakerText : '' )
           ).value
         );
@@ -161,13 +115,4 @@ var App = new Vue({
 
 window.setSteps = function(message) {
   App.steps = message.steps;
-};
-
-window.setPathname = function(pathname) {
-  var className = '';
-
-  pathname.split('/').map(function(part){
-    className += helper.ucfirst(part).replace(/[^\w]/gi, '');
-  });
-  App.className = className + 'Test';
 };

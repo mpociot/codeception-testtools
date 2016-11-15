@@ -1,6 +1,6 @@
 {
   "name": "CodeceptionTestTools",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Chrome extension to generate Codeception acceptance tests while using your app.",
   "dependencies": {},
   "devDependencies": {

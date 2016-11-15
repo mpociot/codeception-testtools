@@ -32,41 +32,21 @@
         <i class="material-icons">content_copy</i>
         <span>Copy to Clipboard</span>
       </a>
-      <a class="button components"
-        @click="rename()">
-        <i class="material-icons">create</i>
-        <span>Rename</span>
-      </a>
       <span class="message-container">
         <span class="message">
           {{message}}
         </span>
       </span>
     </div>
-    <div id="toolbar" v-show="renaming">
-      <label for="namespace">Namespace:</label> <input type="text" placeholder="Namespace" v-model="namespace"><br />
-      <label for="testName">Test:</label> <input type="text" placeholder="Test name" v-model="testName"><br />
-      <label for="className">Class:</label> <input type="text" placeholder="Test class name" v-model="className">
-    </div>
     <div id="testbar">
       <pre>
         <code id="testcode" class="hljs php"></code>
       </pre>
       <code id="steps" style="display:none;">
-%NAMESPACE%
-class %CLASSNAME%
-{
-%FAKER%
-    /**
-     * My test implementation
-     */
-    public function test%TESTNAME%()
-    {
+%FAKER%$I = new AcceptanceTester($scenario);
 <template v-for="step in steps">
   <template v-if="! step.faker && ! step.custom">{{indent}}$I->{{ step.method }}({{ step.args | implode }});<template v-if="$index+1 < steps.length">{{linebreak}}</template></template><template v-if="step.faker">{{indent}}$I->{{ step.method }}({{ step.args | implode true }});<template v-if="$index+1 < steps.length">{{linebreak}}</template></template><template v-if="step.custom">{{indent}}{{ step.action }};<template v-if="$index+1 < steps.length">{{linebreak}}</template></template>
 </template>
-    }
-}
 </code>
     </div>
     <script src="../js/panel.js" charset="utf-8"></script>
