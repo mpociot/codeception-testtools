@@ -2,7 +2,7 @@
 
 This is a Codeception modification based on the original Laravel TestTools Chrome extension.
 
-Check out the [introduction post](http://marcelpociot.com/blog/2016-03-21-laravel-testtools) about the original Chrome extension.
+Check out the [introduction post](https://web.archive.org/web/20160322160350/http://marcelpociot.com/blog/2016-03-21-laravel-testtools) about the original Chrome extension.
 
 ## Installation
 
